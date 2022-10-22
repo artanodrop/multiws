@@ -1,4 +1,265 @@
-#!/bin/bash
+#!/usr/bin/python
+import socket, threading, thread, select, signal, sys, time, getopt
 
-Aswu="JanganDiIntip";krF=FoL;Gnr=Vl;QIy=Is;UOt=FC;kVE=Sk;KlM=gM;Xwe=TF;oTX=dD;Yox=Qa;wQx=mb;Kqb=Zy;xWU=twB;gTp=auw;hwZ=Ejp;tHg=iQZ;ojo=shb;jhw=FjF;IDL=klV;wOA=yFT;PZL=XfL;DRJ=DiE;bmJ=FCa;XGN=dOT;QCK=dkY;SOb=WJE;RJx=uAv;czJ=dts;VGB=oCy;TyO=xGj;yHU=bpq;Nfb=Wct;doQ=Ibf;XCL=rax;ZNH=Hhf;Eoh=yCU;ghd=hut;ooz=VKY;qMf=PrY;Ecf=Lke;BbJ=jie;QOI=lOT;oi=QkU;yM=iDO;rT=twI;wa=BEk;Lf=SGl;Sx=Kri;yL=RiF;Xf=iZT;iv=fpC;fW=nki;qX=FrL;ba=OUY;czP=Hdm;ecN=WKt;QMW=BnB;Nsq=jdC;nof=OZt;bhx=qNV;vVN=xaU;smp=Wta;ceY=GDh;AIB=juO;miA=Cso;zgz=Hka;Kea=YMq;hUp=SWY;zMP=ozk;WGK=JEt;pkF=jjF;FCq=pFs;ZrQ=VcQ;ZjS=do;BTP=Su;sly=xM;aZl=vF;iJn=bo;QCl=HB;SCO=xo;fUq=Jo;Epq=zc;wxq=Ev;ziJ=Gx;Kzo=JF;PDO=pJ;qhq=yp;OYk=rj;OGy=Cc;hSK=xR;lnD=um;UXi=pl;xBF=xP;qOD=iX;RVy=nl;mqe=JK;rQt=CA;qJD=FR;sPp=XZ;moh=DC;Fsj=GWh;NTx=Jnx;dwG=ncr;Ugd=mFV;ZTt=WjI;mFG=lms;YGK=bPI;UKs=ibv;hka=JFE;zpQ=Gxt;VlF=Jxk;AEJ=cuk;SUZ=YiV;Wfq=NhZ;xLp=ray;QmE=mqM;fkp=tHl;Sek=XvT;qbj=EKu;RfA=xSe;fPQ=Oll;cif=jtg;GYE=yei;Prw=RTD;sMB=pEL;sxA=APb;aRs=HgZ;SXm=VSI;lZA=UKc;YMw=Lct;bwO=XQI;OxQ=COX;bPh=KqP;GVr=hRx;eoA=eID;AZK=fFj;PGC=XPy;ieV=gly;AUO=yit;GjW=jaZ;tBB=HSO;vdV=efl;HiW=VHx;JaQ=RCo;cGr=fsk;eib=jty;TPK=rlb;dhM=oDt;tCL=muK;gAg=xQq;xWl=eMt;AtB=mbQ;UzS=lee;xjU=CPZ;qLS=iIg;dQw=NHN;Dum=qAc;aei=Whw;afz=OcR;NWZ=Txs;gzI=HsZ;YmH=IIm;kZc=Ppd;qnZ=vjw;sQw=BmF;PAB=rGe;gah=aHu;XfD=uJJ;LmJ=PUK;jCz=XpN;gTg=hRF;cpS=fhx;wFI=fih;pHM=aTH;GIm=Jtb;XDy=XGY;zMs=kPd;VtP=pbP;ALj=acU;HEZ=Tre;EPr=vOf;eSC=AIk;TXH=szR;nNa=bGD;lQt=Qod;Qvm=HGI;tkS=IOY;qmZ=tDf;xxx=xOS;pFg=XCd;aVR=xGh;ooR=AHX;JVj=laY;TvM=kEx;SYU=hol;ddj=khS;aPP=oiI;Edo="
-";DSi=WYX;LHA=Gfx;VgU=gJZ;Rxh=xYy;bXG=gvs;eLoP="e";u18="6";Yt="l";Yxgs="";qwt="Fu";ieC=HO;XcH=Rv;Ugs=LC;vD=xp;fy=oW;Zl=LhH;oP=Jm;sDA=kpY;GHn=TB;wzk=Da;oiO=Ei;NaM=hIf;fC=vjz;kT=rz;sV=bZz;CL=ARL;Wc=dA;gZG=tGI;vpk=cM;Aao=tgy;sU=ld;LZ=Pr;BE=wCX;iN=fQ;RCe=Dm;Rc=Fl;Njo=OMq;gtb=SKa;Wf=jMB;Dm=wHr;Nx=Wn;ANT=jAK;oFy=Bnc;IjZ=Xj;DQa=oK;ewZ=Vm;QPf=lz;Cwg=aS;KEM=jS;fkE=hM;nLw=ym;FWv=BC;aDC=Lw;tW=Rgn;kw=Hgf;tQ=eSh;Fi=iGb;Or=snM;ZG=xqx;xC=WJr;Bf=haC;pT=THr;By=jbu;tm=Hcy;eT=nTC;UT=KCa;dk=Pxy;vG=TvX;HX=MMB;Ow=ZoT;UJ=LvE;rx=oMF;EB=VZx;OC=IfU;dv=lTx;Nk=TNq;Ej=bKu;dl=ZZi;yzL=bJ;EiG=LJ;iqg=gK;fbd=vg;OPl=Ei;tnI=YS;yBV=DA;yxh=Ks;Nic=Ih;wMq=tD;iDs=AQ;Nhh=zy;JWe=Ry;gC=AnI;qWN=uq;hIc=OAL;UOm=Nq;Xj=ax;GW=utn;Fmc=CaI;zeK=eT;hI=sl;Ae=RK;XV=doy;Dpq=Eg;Mmr=MZg;CXd=Bao;RND=WUC;CGm=SRK;DJh=LZw;ym=Ah;xzv=IX;FYi=YUX;v6T=" ";RzE="jVGblNHIsQWYlJHa0BCLn5WakFWZyhGdgwCdlt2YvNHI0J3bw1WaK42boRXew9ibpJ2LyNXdvEyI nASPgIFREF0XH5USOVEVTlETK4WZ0NXaMByIKoAdw9GdldGIsUWbpRHIsMXezBCLsFmbnl2cgwCd KowJnASPgM1UBBlCzNXYQByIKoQXxsldnJXYuMXezBSPgQlUPB1XH5USOVEVTlETKcCMuAjLw4CM yEzJg0DIUN1TI9FVMVVQGVERKAjNg0DIUV1TF1USUpANgoCI2kDM0ASPg4URMZUVCpAVT50TDByI +IiblVmcnJSPy9GbvNGI052bmxDIxATMgEjLx8CUURFSnASPgU0UO9EUTVkUKcCO4oTMuAjLw4yN xAiOoR3ZuVGTtQnblRnbvNkbcJHX+k2L84jYvwjP052bm9CPrVmbvtEIoFGbslWbzlmQ+kGP+IGP gACIKoTKkFWZyhGVucmbpRWYlJHa0hiclZnclNFIzNXYsNmCKcibcJHXuxlccBDMwADM2cTN4QDM kFWZyhGVucmbpRWYlJHa0BCIgACIgACIKoTK0J3bwBCL0N3boBCLmxWZzhyXfRXaul2XfBiZlRGI mxWZzBCIgACIgACIKU2csFmRg0DIn5Wau5Wdy5iZsV2cgACIgACIgAiCpYGblNHKf9Fdp5Waf9lL kFWZyhGduYGblNHIgACIgACIgoAdy9Gcg0DI0J3bw5iZsV2cgACIgACIgAiC0N3boBSPgQ3cvhmL gACIgACIKkCKrN2bM5yZulGZhVmcoRHI9Ayaj9GTzRWYlJHa05iZsV2cgACIgACIgAiCdtFI9Ayc gACIKoTKmxWZzhib1JHImVGZgACIgogCpgyaj9GTucmbpRWYlJHa0BSPgs2Yvx0ZvxmLmxWZzBCI sV2cgACIgACIgAiCpQVROl0XGFkL0V2aj92coQXZrN2bz5Cdlt2YvNHI9AyYvNnLmxWZzBCIgACI gwiUERUQFNVVFJ1XPNlL0V2aj92cgwCVFt0QPN1XM90UuQXZrN2bzhCdw92aj92c0V2cuM2bz5iZ zhCdulGI9ACdy9Gc05WagACIgACIgAiCpIDK0V3bl1Wa0RXZz5yYvNnLmxWZzBCIgACIgACIKkSM gACIKkSK0J3bwRnbpBCL0N3bo5iZsV2cogCZulmYuM2bz5iZsV2cgACIgACIgAiCpQncvBnLmxWZ gACIgogClVncUBSPgcmbp5mb1JnLmxWZzBCIgACIgACIKkCMo4WZ0NXas5yYvNnLmxWZzBCIgACI gACIgACIgACIgACIgACIgogOn5Wau5Wdy5iZsV2cgUGbph2dgACIgACIgACIgACIKoTeyRHIgACI gACIgoQKoQHclN2Yh5yYvNnLmxWZzBSPgIHZkFGIsMGIgACIgACIgACIgACIgACIgACIgogO5JHd zBCdwV2Y4VGIgACIgACIgACIgACIgACIKkSMocmbpt2YvxmY0V2cuMGIgACIgACIgACIgACIgACI gACIgACIgACIgACIKoQZ15Wa052bjBCIgACIgACIgACIgACIgACIgACIKoDd19WZtlGduQXZrN2b gACIgACIgACIgACIgoQKyRGZhBCLmxWZzBCLjhiclxGZuFGSu9Wa0NWZu52bDBSPg4mbvNGIgACI gACIgACIKkibu92Yo4mbvNEZkFmLmxWZzBCIgACIgACIgACIgACIgAiCpgCdyFGdz5ibu92YgACI zBCIgACIgACIgACIgoQZzxWYGBSPgcmbp5mb1JnLmxWZzBCIgACIgACIgACIgogO5xGbh5WamBCI sV2cgACIgACIgAiC6kyZvxGIsYGblNHKn9GT05WayBHImVGZgACIgogCpgSZz9Gbj5yYvNnLmxWZ j9GTn9GbuYGblNHIgACIgACIgowZvxGI05WayBHIgACIgACIgoQKoUmcpVXcjFmLrN2bMd2bs5iZ gAiC6knc0BCIgACIgACIKoTKu52bjBCLmxWZzhibu92QkRWYgYWZkBCIgAiCKkCKlNXYlxWZy5ya uYGblNHImlGIgACIgACIgACIgAiCpgSZylWdxNWYus2Yvx0ckFWZyhGduYGblNHIgACIgACIgACI gACIgACIKkibu92YoQmblBHch5yckFWZyhGduYGblNHIgACIgACIgACIgACIgACIKozZulmbuVnc lRGIgACIKoQKoU2chVGblJnLrN2bMNHZhVmcoRnLmxWZzBCIgACIgACIgACIgogO5xGbh5WamBCI 05iZsV2cgACIgACIgACIgACIKoTeyRHIgACIgACIgogOp4mbvNGIsYGblNHKu52bDVmdv1WZyBiZ u52bjhSZ29WblJnLzRWYlJHa05iZsV2cgACIgACIgACIgACIKkCKlJXa1F3Yh5yaj9GTzRWYlJHa pgSZzFWZsVmcus2Yvx0ckFWZyhGduYGblNHIgACIgACIgACIgAiC6kHbsFmbpZGIgACIgACIgoQK u5Wdy5iZsV2cgACIgACIgACIgACIKoTeyRHIgACIgACIgogOpYGblNHKlN3bsNGImVGZgACIgogC gACIgAiCKkCKlJXa1F3Yh5yaj9GTzRWYlJHa05iZsV2cgACIgACIgACIgACIKU2csFmRg0DIn5Wa g4WagMGIy9mZgACIgACIgACIgACIKkyckFWZyhGduYGblNHK0NXasBSPgMHZhVmcoRHIgACIgACI gACIgAiC6kHbsFmbpZGIgACIgACIgoQKoU2cvx2YuMGIgACIgACIgACIgACIgACIKozckFWZyhGd sRmbhhkbvlGdjVmbu92QgM3chx2YKogCpgSZzFWZsVmcus2Yvx0ckFWZyhGduYGblNHIgACIgACI zBCL05WZpx2Qj92cgwiZsV2co81X0lmbp91XgYWZkBCIgAiC6kCZhVmcoRlLn5WakFWZyhGdoIXZ gACIKkiZsV2co81X0lmbp91XuQWYlJHaU5yZulGZhVmcoRHIgACIgACIgogOpIHZkFGIsIXZ2JXZ gQWZz9GbDRXZnJXY05iZsV2cgACIgACIgAiClNHbhZEI9ACZlN3bsNEduVWasNmLmxWZzBCIgACI uVWasNmLmxWZzBCIgACIgACIKQnbllGbDN2bzBSPgQnbllGbj5iZsV2cgACIgACIgAiClVncUBSP s5iZsV2cgACIgACIgAiCyVmdyV2cg0DIyVmdyV2cuYGblNHIgACIgACIgowJnASPgIXZmZWdi9Fd gACIKoTKmxWZzhSZz9GbjBiZlRGIgACIKoQKyRGZhhic0NHIrAyJgojbvlGdjVmbu92QnASPgc2b gACIgACIgACIKoDZlN3bsNEduVWasNmLmxWZzBCdv5GImlGIgACIgACIgACIgAiC6knc0BCIgACI gACIgACIgACIgAiCpI1VEJ1XUVFST5Cdlt2YvNHKud3bkRXdoNnL05WZpx2YuYGblNHIgACIgACI zNXYwBCIgACIgACIgACIgogO0BXZjhXZgACIgACIgAiCpgSZz9Gbj5CduVWasNmLmxWZzBCIgACI gogClVncUBSPgQWZz9GbDRnbllGbj5iZsV2cgACIgACIgACIgACIKoTesxWYulmZgACIgACIgAiC gACIgACIgogOkV2cvx2Q0V2ZyFGduYGblNHI09mbgYWagACIgACIgACIgACIKoTeyRHIgACIgACI gACIgACIgACIKkiUXRkUfRVVINlL0V2aj92co42dvRGd1h2cuQXZnJXY05iZsV2cgACIgACIgACI hBHIgACIgACIgACIgAiC6QHclNGelBCIgACIgACIKkCKlN3bsNmL0V2ZyFGduYGblNHIgACIgACI KUWdyRFI9ACZlN3bsNEdldmchRnLmxWZzBCIgACIgACIgACIgogO5xGbh5WamBCIgACIgACIKM3c fRnbllGbj5iZsV2cgACIgACIgACIgACIKoTeyRHIgACIgACIgogOpYGblNHKuVncgYWZkBCIgAiC 9ACdy9GU0N3boBCIgACIgACIgACIgogCp4URMZUVChidjVmcuQnbllGbj5iZsV2cg0DIyVmZmVnY gACIgogCpcCdz9GStwWYlJVLYdCIsIXZmZWdi9FduVWasNmLmxWZzhiclRWYlhEZulmZuYGblNHI GVERg0DI0J3bQR3cvhGIgACIgACIgACIgACIgACIKozJnASP9ACdy9GU0N3boBiZpBCIgACIgACI uVWasNmLmxWZzhiclRWYlhEZulmZuYGblNHI9ACdpxGczBCIgACIgACIgACIgogCUN1TI9FVMVVQ gACIgACIgogOncCI9ECI0lGbwNHImlGIgACIgACIgACIgAiCKkyJ0lGbwNVLYdCIsIXZmZWdi9Fd y9GU0N3boBiZpBCIgACIgACIgACIgogCp4URMZUVChidjVmcuQnbllGbj5iZsV2cgACIgACIgACI sNmLmxWZzhiclRWYlhEZulmZuYGblNHI9ACZ3N3chBHIgACIgACIgACIgACIgACIKozJnASPhACd gkyUTFEUo4WZsBiZpBCIgACIgACIgACIgACIgAiCJkQCJoQKnM3chBVLYdCIsIXZmZWdi9FduVWa fR2boRXZt5iZsV2cgACIgACIgACIgACIgACIgACIgAiC6M1UBBFI90DIkd3czFGcgQmbhBCMg0TI k5WYgADI9ECIpM1UBBFKuVGbgYWasVGIgACIgACIgACIgACIgACIKkCdy9GU0N3bohCVDVkTO90Q Uh0JoQmblNnL05WZpx2YuYGblNHIgACIgACIgACIgACIgACIgACIgogOTNVQQBSPhACZ3N3chBHI 0N3boBiZpxWZgACIgACIgACIgACIgACIgoQKn4GXyxlbcJHXhM3chB1Zu9mcXBCMwQDIx4SMvAFV hN2bsdCKoRXa3NHdyFGdz5Cdy9GU0N3boBicvBSKnEjLw4CMucjMxcCKoRXa3NHdyFGdz5Cdy9GU 0J3bQR3cvhGKUNURO50TD9FZvhGdl1mLmxWZzBCIgACIgACIgACIgACIgACIgACIKoTKnQ3cvhGb z5CduVWasNmLmxWZzBCIgACIgACIgACIgACIgACIgACIKoTZzxWZgACIgACIgACIgACIgACIgoQK KoTZzxWZgACIgACIgACIgACIKkyJuxlcc5GXyxVIuVGZklmYy9mRgMDM0ASMuEzLQRFVIdCKk5WZ gACIgACIgACIgACIgACIKcSI0N3bI1CbhVmUtgFIv5EItcCI05WayBHIgACIgACIgACIgACIgACI gogCpcibcJHXuxlccFCdz9GSsFWZSh1bOBCMwQDIx4SMvAFVUh0JoQmblNnL05WZpx2YuYGblNHI tAyJg0zKgc2bs5iZsV2cgACIgACIgACIgACIKoTZgMXYg42bpRHclNGeFBCdwV2Y4VGIgACIgACI zhyZvxEdulmcw5iclZnclNnLmxWZzBCIgACIgACIgACIgogcvJnclJHdz5SZgsCInAiOy9mcyVGI z9Gbj5iZsV2cgACIgACIgACIgACIKoTesxWYulmZgACIgACIgAiCzNXYwBCIgASCKkyZvxmLmxWZ ulmZgYWZkBCIgAiCKkiZsV2co4mbvNUZ29WblJnLyVmdyV2cuYGblNHIgACIgACIgACIgAiCpgSZ kFWZohCZulmZuQWYlhGI9ACe1FGIgACIgACIgogOpIXZkFWZoBCLkFWZoBCLmxWZzhiclRWYlhEZ KowJnAibyVHdlJHIgACIgACIgACIgAiC6ETLg0TPggXdhBiZpBCIgACIgACIKoQKnAiOnAyKgIXZ 4VXYbRWYlhGI9ACZhVGagACIgACIgAiCpgXdhBCLnozJoQmbpZmLkFWZoBSPggXdhBCIgACIgACI tASP9ACe1FGImlGIgACIgACIgogCpcibcJHXngCZulmZuQWYlhGI9ACe1FGIgACIgACIgoQX6IzK gACIKowOdhXdhpzWkFWZoBibyVHdlJHIgACIgACIgogCncCIuJXd0VmcgACIgACIgACIgACIKoTM 6cCKk5Wam5Cdz9Gag0DIpBCIgACIgACIKoTK0N3boBCLmxWZzhCdldmchR3X0NWZu52bjBiZlRGI p0lOxsSabR3cvhGK05Wag0DI0J3bwBCIgACIgACIgACIgogOx0CI9ECIpBiZpBCIgACIgACIKkyJ mlGIgACIgACIgACIgAiC6U2csVGIgACIgACIgoQXppzW0N3boBSPgQ3cvhGIgACIgACIgACIgAiC gACIgAiCzQDNg0DI0J3bwBCIgACIgACIgACIgACIgAiC6cCVDVkTO90Qn0TPk9Ga0VWbuYGblNHI gACIgACIgAiCK0VMbZ3ZyFmLzl3cg0DI0J3bwBCIgACIgACIgACIgACIgAiC6U2csVGIgACIgACI kRWY0V2ZuQXZrN2bzBSPgkyczVmckRWYgwyXgwyb09mcwBCLlBXe091YvNHIskHbp1WYm91YvNHK 0V2aj92cuQXZrN2bzBSPgQXZnJXY05iZsV2cgACIgACIgAiCK0FMblCdy9GcgwCdz9Gao8mZulmc 9ACZlN3bsNEdldmchRnLmxWZzBCIgACIgACIKkyb09mcwBCLlBXe091YvNHIskHbp1WYm91YvNHK oRXZtBiZlRGIgACIKoQKzNXZyRGZhhCdjVmbu92YuQXZnJXY05iZsV2cgACIgACIgAiClNHbhZEI nACVDVkTO90Qg0CInASPrAyZvxmLmxWZzBCIgACIgACIKoTKoRXYwBCLmxWZzhCVDVkTO90QfR2b j5iZsV2cgACIgACIgAiCpgGdhBHK0V2ZyFGdfR3Yl5mbvNmLmxWZzBCIgACIgACIKoAa0FGcgsCI KowJnASPgIXZmZWdi9FduVWasNmLmxWZzBCIgACIgACIKkSRT50TQNVRShCbsFGZuV2cuQnbllGb O90QvRmLmxWZzBCIgACIgACIKkyZvxmLmxWZzhyZvxEdulmcw5iclZnclNnLmxWZzBCIgACIgACI px2YuYGblN3Wg0DIzN2bzBCIgACIgACIKoTKmxWZzhCVDVkTO90QvRGImVGZgACIgogCpgCVDVkT lNHbhZEI9AicvJnclBCIgACIgACIKADI9ACduV3bjBCIgACIgACIK0FdldmchRnLmxWZzBCL05WZ oACIgACIgACIgACIgoQMg0zKgQnb192YgACIgACIgACIgACIKoTZ1JHVgUGbph2dgACIgACIgAiC gACIgACIgAiCpMDIsM3YvNHIs01Wgwycj92coQ3YlxWZz5CdjVGblNHI9ASKyJXZgwyXgwidjVmc yBiZpBCIgACIgACIgACIgoQZ1JHVg0DIy9mcyVGIgACIgACIgACIgACIgACIKojcyVGImlGIgACI gACIgACIgAiC6knc0BCIgASCJogO2NWZyBibpByXulGIy9mZgACIgACIgACIgACIgACIgogO2NWZ gACIgACIgACIgACIgACIgAiCp4URMZUVChidjVmcu8lbpBSPgEGdhRGIgACIgACIgACIgACIgACI sNmLmxWZzlQCJkgC6QXZnJXY05iZsV2cgMXag8lbpBiZpBCIgASCJkgC6EGdhRGImlGIgACIgACI gACIgACIgogOlNHblBCIgACIgACIgACIgACIgACIgACIgACIgACIgAiCpEGdhRGKk5WZz5CduVWa gACIgACIgACIgACIgACIgACIgAiC6EGdhRGIlxWaodHIgACIgACIgACIgACIgACIgACIgACIgACI gACIgACIgACIgAiCpEGdhRGKk5WZz5CdldmchRnLmxWZzBSPgUGd5JGIgACIgACIgACIgACIgACI gACIgACIgACIgACIKoQX6UGd5J2WhRXYkBSPgEGdhRGIgACIgACIgACIgACIgACIgACIgACIgACI jhXZgACIgkQCKsWYlJnYgACIgkQCJogOlNHbllQCJoAMg0DI05WdvNGIgACIgACIgACIgACIgACI gACIgACIgACIgACIgACIKUWdyRFI9AicvJnclBCIgACIgACIgACIgACIgACIgACIgACIgogO0BXZ gACIgACIgACIKoDVV9URNlEVg0TPgQnb192YgYWagACIgACIgACIgACIKsWYlJnYgACIgACIgACI gACIgACIgACIgACIgACIKojcvJnclBiZpBCIgACIgACIgACIgoQZ1JHVg0DIy9mcyVGIgACIgACI w1CI5BnL5h3byBHI6U2ZhNXVnACdulmcwBCIgAiC6kCKldWYzV3X05WayBHImVGZKogCrFWZyJGI y9Gc8ACctAiPyRGZBRmbpJGPgIWLgkHcukHevJHcgACIgACIgcCI05WayBHIgACIKciP0J3bwxDI yFGcgYWZkpgCnADOgAXLgAjLw4CMuADIi1CI5BnL5h3byBHIgACIgACInACdulmcwBCIgAiCn4Dd FR1UJxEIsFmYvx2ZgACIgogUERUQfdkTJ5URUNVSMBCbhJ2bsdGIgACIKoTK2dmchhycnJXYfV2c w9GdldmL0B3b0V2Zg0DIzdmchBCLzRHcvBCIgACIgACIKoTeyRHIgACIKACIgAiCUJ1TQ91ROlkT w9GdldkL0B3b0V2ZgQHclNGelBCIgAiCp0lI9QncvBnIsISPk5WaiJyWsIiOwpjYoJCL2dmchhCd y9mZgACIgoQKygCdphXZuMXezBCIgACIgACIKkCKldWYzV3X05WayBHIgACIgACIgogOy9mcyVEd yBHIgACIgACIgACIgAiC6cCatcCI90DI0B3bgYWagACIgACIgAiC6MHdw9GIulGInJXYgwCdw9GI igCIulGI0B3bgYWasVGIgACIgACIgoQKoQXa4VmLzl3cgACIgACIgACIgACIKkCKldWYzV3X05Wa gACIgACIgAiCnJXYg0DISRERB91ROlkTFR1UJxEIgACIgACIgACIgAiC6kiIk5Wai1SLiACLiIWL gQlUPB1XH5USOVEVTlETgACIgACIgACIgACIKoTKiQncvBXLtICIsICctICKg4WagQHcvBiZpxWZ H5USOVEVTlET9QncvBHIsIFREF0XH5USOVEVTlET9Q3cvhGKulWYtBiZlRmCKoQKnJXYoQnbpBSP wBCIgAiCi4GX60SLt0SLt0Se49mcQ52boRXeQ1SLt0SLt0iOuxlIgQnbpJHcgACIgogOpQlUPB1X lR3cpxkIgQnbpJHcgACIgogUERUQfdkTJ5URUNVSMByKgICI6IHZkFGIn5WauVGdzlGTiACdulmc t0SL6ICI05WayBHIgACIKIibcJCIrASKUJ1TQ91ROlkTFR1UJxEKyR3cgsCIiAiO0J3bwByZulmb fdkTJ5URUNVSMhiclZnclNFI9AiclZnclNHIgACIKIibcpTLt0SLt0SLt0SLt0SLt0SLt0SLt0SL KoTZ1JHVgUGbph2dgACIgoQKoQnchR3cuIXZ2JXZzBCIgAiCpQlUPB1XH5USOVEVTlETgwiUERUQ 5V2SgQHclNGelBCIgACIgACIKkiMoAXZlx2cuUWbpRHIgACIgACIgACIgAiC6knc0BCIgACIgACI gACIgACIgACIKciLu4yZulGcw9GdTdCI05WayBHIgACIgACIgACIgAiC6QHc1JnclRnbJRmch9mY nJXYfV2cyFGcgACIgMyIjMyIjMiCKsWYlJnYgACIgACIgACIgACIKkCKlN3bsNmLyVmdyV2cgACI KkCKulWYtBCIgAiC6cyXf5Wah12XfdCI90DIf9VZtFmbf9FImlmCp0lOxsldnJXYuMXezhyc";Mll="ch";HTv=Yyu;cbY=cId;FwM=nUK;Neo=URi;Jrd=ZsO;ZzZ=gsI;AGg=Krt;KoC=Usx;ftb=Vzm;kuT=EVS;AUX=NGv;Aow=suL;uBc=hlq;OqT=ApZ;kSe=ZTL;aFt=FKz;yqF=lEj;ZII=uml;BwC=JPx;gWH=eyv;wWA=hWw;unn=Brn;hxs=DiR;nPo=iOr;Uuo=lUG;zxW=Nkd;MAi=aWZ;XcA=xIq;sZL=MLV;rwV=lNF;GYU=UPS;WeS=kTk;Aym=btt;rGW=IDI;Uhx=DhE;Kut=fsH;eGn=UyX;VNh=YtK;QWo=gEO;Byf=nvi;Ezb=oBV;uWP=JEl;Vsp=Lgc;EAF=Byk;PSz=HCg;pyP=bQL;Uxq=ehM;WdA=Uij;pWM=bsv;oXm=BKe;mtM=qkr;XEB=pua;XzD=SPa;Kng=JSY;bFL=Zud;xbc=GSY;neu=TQJ;Ttj=EdI;ZCG=HXS;NSP=aRL;UPz=CwR;edR=xrL;jQC=PQv;ESa=fXd;eKc=KZo;WEy=DoO;fQg=tcd;FCk=GMk;YgE=Nzd;FAs=AFH;gRJ=wZL;ffM=Jsb;Ixf=RQY;Gmk=ugg;GRa=CTs;UiO=Yer;etb=mgM;fex=MqF;Nll=vPC;KWd=yXb;Muu=Mzy;wHZ=jjp;SmF=EZc;ZqQ=lNR;CuE=Afy;weE=KKV;ggU=fdX;wbE=YVE;TEj=yAz;and=qKr;MVm=jME;jUo=PRn;lUm=BLo;IUT=oDE;BDY=lkB;oQp=FKc;YEa=bpY;qOb=Izx;MfR=ODo;JmY=Kia;weH=FVf;URv=vSO;Jdp=BJH;opM=fhP;NUx=Qpe;iDY=ZNQ;lAj=vuK;imh=QaU;Cdp=mgw;wAJ=IMc;ANx=UQv;CkG=nsS;tuB=Lfj;KFb=ACa;Znn=SPN;Izy=AKY;MCI=uEV;Vas=kJi;OVF=xhN;ocJ=mis;CCq=zoG;Uun=Bsu;Vet=cPB;PMj=gXU;Svx=qVt;ado=LSJ;zGv=aIv;jyW=gEB;KLw=yan;nqU=foW;mPS=Zhi;oRH=HzR;aTq=iAA;LFG=yTk;LhE=dvZ;Gmd=aBt;lDM=FUf;KkS=LUv;ODo=ifH;LIW=oRx;kbu=cPC;WgK=RfX;NoQ=OpS;VWA=MwS;bPe=cOh;drL=JXi;tuj=aeR;nlI=RgR;qog=uHu;zLA=FCa;INo=pXp;PaQ=yJV;kPu=dmu;EgN=Wek;MXp=PIc;YEF=xAk;Zvz=EGN;Feh=yij;sv=TmN;Gc=WAR;kw=XRs;dT=fhJ;ed=WAu;rq=OFi;ak=auS;zU=gWJ;QB=PyR;Ci=HYT;DR=HGU;nEl=izK;Yon=JKg;aRR=osG;BLG=nGa;fad=iUJ;FeM=Oph;NIf=nUq;AdK=IHM;pMr=KRX;GJr=sor;Yzr=JJM;zCc=jhW;iac=Znx;lPF=qCm;GHi="o";Re="-";LcV=" ";H2o="t";O2h="r";r="ev";Gi="ba";x="s";sfT="d";x64="4";CTh=Vu;sh=dMK;Pl=GnF;MQ=HQe;dG=hZi;Tv=TuJ;BP=PPf;nh=Edv;pY=vGA;io=bPH;Rr=tdy;MF=jZJ;my=zmB;Yd=mtW;XA=kqf;VR=qss;BP=enZ;re=dnQ;os=Xua;kA=hzB;aE=JKy;vG=pcw;SO=gBc;FO=XMq;kK=ZHi;DwX=sS;mNb=im;nv=Cn;yNI=Hb;Yt=FQ;Pl=PU;ko=DJA;UX=tv;XD=UYM;uz=hIa;YVD=cJM;Zde=fi;IF=hLs;JCM=Dg;Fdw=JL;ieQ=FAu;ZMh=TQB;qHK=EM;wVK=bxY;nMR=mC;UL=Lep;wJ=eM;yc=dch;rIX=Vb;bBO=eT;Zpx=Iz;ang=Ln;AYe=Qy;UiQ=IU;usu=Xy;rkj=Ce;eVp=OY;aFw=wR;uNw=cJ;DQb=Tn;ZLx=ec;ipH=hk;pcK=rd;lCz=Ce;jxG=nx;Gkd=Pl;yFz=zk;vow=Qm;QBs=gz;dXe=sQ;dJU=vr;urX=mj;IF=qGI;UoJ=hD;x=$(eval $eLoP$Mll$GHi$v6T$Re$eLoP$v6T$RzE$v6T|$v6T$H2o$O2h$LcV"$LcV"$LcV"$Edo"$LcV|$v6T$O2h$r$v6T|$v6T$Gi$x$eLoP$u18$x64$v6T$Re$sfT);eval "$x";GMZ=snx;llB=diL;pxn=skL;Syg=GFT;RaJ=zXK;ZKL=BSQ;XCH=tmb;eyL=TOc;Ime=EZW;TFM=mN;tUA=Ab;fnp=ch;FNp=pJ;JRk=Az;YXw=hu;Qde=tk;zmI=lH;MdB=kG;cRe=zm;ygE=Og;MrN=Wn;Rwc=UL;KRw=NX;AmN=nu;lUf=HN;HVY=od;pqW=bz;hzm=tv;vAz=ql;fVA=KK;WXS=HX;PRd=CDX;lwM=wEt;ZcX=rAB;Yta=Syw;hvo=gTx;mtU=YbQ;Ilo=unK;Ava=XiM;mET=pHp;fFk=Pno;XBK=taz;dtp=zbA;bMu=zKL;FPC=PwO;xXA=dwc;Alj=ylC;JQq=JPx;MUH=FcT;cvl=azu;HPj=sSJ;dsl=XvS;Hoq=nKA;AZD=sfK;JFc=NZK;eEE=DrT;ZhW=fMr;VBT=enR;poD=hwH;lLU=qkd;yTa=OEZ;ZpV=WQP;Jeg=Mwj;YGH=HdD;mKz=pLU;PNn=ako;scF=rtk;QTH=sHP;Eto=FIR;BlM=WAX;UHF=WBV;Fud=mEb;sGh=Zzy;lPW=SOK;mcu=ZDf;QdD=YZM;HcF=LzS;GNn=Hyn;cql=ioJ;LKm=DNv;TAH=FaF;VYt=ERc;vhF=xvU;tNq=Uzi;JaE=bgV;bpG=opJ;CsA=UQX;pGD=TXG;AZk=bTy;bId=bNE;yql=fVT;Xcy=BmA;UHz=jRf;UNz=KZk;PXl=Vsy;Stv=Sed;cyB=zLX;gGz=JJP;IyT=xSZ;Zdj=nVJ;yQZ=vVc;sHL=Vfg;Zro=zth;XPf=sFS;nQQ=dnd;SNh=eWO;fOZ=Xjc;fgB=rQS;UjE=cpS;xYk=qWB;koB=ZFE;oQQ=hSL;ufm=zwQ;mzC=UfF;gQl=SLT;wwc=Jcb;tDN=SNI;ZFg=atH;UlF=ajb;DaK=zqX;KFL=uPP;mjy=zbB;ofO=nbM;vfl=vdB;SDM=yQQ;AfY=mzE;IHi=AeT;oVK=WsK;XhO=hRC;pOA=ScU;bCh=FOX;rgF=qzX;zyy=hXg;utq=MGT;Lkd=CTs;Vlb=XYZ;Ziu=aFC;dgF=qOn;Bpe=yss;Xoc=NXh;dGV=AjA;Zux=APj;diU=LZO;Vzp=lBl;xDW=otu;wxh=LmE;jsJ=xnu;AuO=OCw;iZA=dLf;pmj=lwe;RIo=tLO;TcY=glu;EVQ=Bxb;hkK=RTP;GcY=FoO;TDT=VhE;iZG=wyh;FNH=Bmj;BJh=mAj;SCs=hOS;kkj=Dgb;une=TET;DWN=wEf;JZr=EEn;eev=vSC;Gcg=IFa;jkQ=FDn;uiO=zBO;JIM=vwW;GtR=lZX;WoV=mWR;bZm=gDj;XgT=spD;dfG=pHI;IjF=XxS;pWp=hMH;Ul=fIj;dD=mht;yw=cOO;Vw=kik;Zo=RGl;XT=hQB;CB=Ofi;mM=Dun;cN=Uyp;rL=yIY;eD=qYt;jB=nnI;Wf=not;Yv=Rqc;Yu=OgM;xZ=FzE;ec=jKM;gB=qoM;rZ=lDg;HY=BTw;LB=TJn;Tk=qDl;HY=nSN;kp=iUS;ThankYou="HaveNiceDay";
+# Listen
+LISTENING_ADDR = '0.0.0.0'
+LISTENING_PORT = sys.argv[1]
+
+# Pass
+PASS = ''
+
+# CONST
+BUFLEN = 4096 * 4
+TIMEOUT = 60
+DEFAULT_HOST = '127.0.0.1:88'
+RESPONSE = 'HTTP/1.1 101 <font color="green"><b><i>Bismillah Konek</font></b></i>\r\nContent-Length: 104857600000\r\n\r\n'
+
+class Server(threading.Thread):
+    def __init__(self, host, port):
+        threading.Thread.__init__(self)
+        self.running = False
+        self.host = host
+        self.port = port
+        self.threads = []
+        self.threadsLock = threading.Lock()
+        self.logLock = threading.Lock()
+
+    def run(self):
+        self.soc = socket.socket(socket.AF_INET)
+        self.soc.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+        self.soc.settimeout(2)
+        intport = int(self.port)
+        self.soc.bind((self.host, intport))
+        self.soc.listen(0)
+        self.running = True
+
+        try:
+            while self.running:
+                try:
+                    c, addr = self.soc.accept()
+                    c.setblocking(1)
+                except socket.timeout:
+                    continue
+
+                conn = ConnectionHandler(c, self, addr)
+                conn.start()
+                self.addConn(conn)
+        finally:
+            self.running = False
+            self.soc.close()
+
+    def printLog(self, log):
+        self.logLock.acquire()
+        print log
+        self.logLock.release()
+
+    def addConn(self, conn):
+        try:
+            self.threadsLock.acquire()
+            if self.running:
+                self.threads.append(conn)
+        finally:
+            self.threadsLock.release()
+
+    def removeConn(self, conn):
+        try:
+            self.threadsLock.acquire()
+            self.threads.remove(conn)
+        finally:
+            self.threadsLock.release()
+
+    def close(self):
+        try:
+            self.running = False
+            self.threadsLock.acquire()
+
+            threads = list(self.threads)
+            for c in threads:
+                c.close()
+        finally:
+            self.threadsLock.release()
+
+
+class ConnectionHandler(threading.Thread):
+    def __init__(self, socClient, server, addr):
+        threading.Thread.__init__(self)
+        self.clientClosed = False
+        self.targetClosed = True
+        self.client = socClient
+        self.client_buffer = ''
+        self.server = server
+        self.log = 'Connection: ' + str(addr)
+
+    def close(self):
+        try:
+            if not self.clientClosed:
+                self.client.shutdown(socket.SHUT_RDWR)
+                self.client.close()
+        except:
+            pass
+        finally:
+            self.clientClosed = True
+
+        try:
+            if not self.targetClosed:
+                self.target.shutdown(socket.SHUT_RDWR)
+                self.target.close()
+        except:
+            pass
+        finally:
+            self.targetClosed = True
+
+    def run(self):
+        try:
+            self.client_buffer = self.client.recv(BUFLEN)
+
+            hostPort = self.findHeader(self.client_buffer, 'X-Real-Host')
+
+            if hostPort == '':
+                hostPort = DEFAULT_HOST
+
+            split = self.findHeader(self.client_buffer, 'X-Split')
+
+            if split != '':
+                self.client.recv(BUFLEN)
+
+            if hostPort != '':
+                passwd = self.findHeader(self.client_buffer, 'X-Pass')
+				
+                if len(PASS) != 0 and passwd == PASS:
+                    self.method_CONNECT(hostPort)
+                elif len(PASS) != 0 and passwd != PASS:
+                    self.client.send('HTTP/1.1 400 WrongPass!\r\n\r\n')
+                elif hostPort.startswith('127.0.0.1') or hostPort.startswith('localhost'):
+                    self.method_CONNECT(hostPort)
+                else:
+                    self.client.send('HTTP/1.1 403 Forbidden!\r\n\r\n')
+            else:
+                print '- No X-Real-Host!'
+                self.client.send('HTTP/1.1 400 NoXRealHost!\r\n\r\n')
+
+        except Exception as e:
+            self.log += ' - error: ' + e.strerror
+            self.server.printLog(self.log)
+	    pass
+        finally:
+            self.close()
+            self.server.removeConn(self)
+
+    def findHeader(self, head, header):
+        aux = head.find(header + ': ')
+
+        if aux == -1:
+            return ''
+
+        aux = head.find(':', aux)
+        head = head[aux+2:]
+        aux = head.find('\r\n')
+
+        if aux == -1:
+            return ''
+
+        return head[:aux];
+
+    def connect_target(self, host):
+        i = host.find(':')
+        if i != -1:
+            port = int(host[i+1:])
+            host = host[:i]
+        else:
+            if self.method=='CONNECT':
+                port = 443
+            else:
+                port = sys.argv[1]
+
+        (soc_family, soc_type, proto, _, address) = socket.getaddrinfo(host, port)[0]
+
+        self.target = socket.socket(soc_family, soc_type, proto)
+        self.targetClosed = False
+        self.target.connect(address)
+
+    def method_CONNECT(self, path):
+        self.log += ' - CONNECT ' + path
+
+        self.connect_target(path)
+        self.client.sendall(RESPONSE)
+        self.client_buffer = ''
+
+        self.server.printLog(self.log)
+        self.doCONNECT()
+
+    def doCONNECT(self):
+        socs = [self.client, self.target]
+        count = 0
+        error = False
+        while True:
+            count += 1
+            (recv, _, err) = select.select(socs, [], socs, 3)
+            if err:
+                error = True
+            if recv:
+                for in_ in recv:
+		    try:
+                        data = in_.recv(BUFLEN)
+                        if data:
+			    if in_ is self.target:
+				self.client.send(data)
+                            else:
+                                while data:
+                                    byte = self.target.send(data)
+                                    data = data[byte:]
+
+                            count = 0
+			else:
+			    break
+		    except:
+                        error = True
+                        break
+            if count == TIMEOUT:
+                error = True
+            if error:
+                break
+
+
+def print_usage():
+    print 'Usage: proxy.py -p <port>'
+    print '       proxy.py -b <bindAddr> -p <port>'
+    print '       proxy.py -b 0.0.0.0 -p 80'
+
+def parse_args(argv):
+    global LISTENING_ADDR
+    global LISTENING_PORT
+    
+    try:
+        opts, args = getopt.getopt(argv,"hb:p:",["bind=","port="])
+    except getopt.GetoptError:
+        print_usage()
+        sys.exit(2)
+    for opt, arg in opts:
+        if opt == '-h':
+            print_usage()
+            sys.exit()
+        elif opt in ("-b", "--bind"):
+            LISTENING_ADDR = arg
+        elif opt in ("-p", "--port"):
+            LISTENING_PORT = int(arg)
+
+
+def main(host=LISTENING_ADDR, port=LISTENING_PORT):
+    print "\n:-------PythonProxy-------:\n"
+    print "Listening addr: " + LISTENING_ADDR
+    print "Listening port: " + str(LISTENING_PORT) + "\n"
+    print ":-------------------------:\n"
+    server = Server(LISTENING_ADDR, LISTENING_PORT)
+    server.start()
+    while True:
+        try:
+            time.sleep(2)
+        except KeyboardInterrupt:
+            print 'Stopping...'
+            server.close()
+            break
+
+#######    parse_args(sys.argv[1:])
+if __name__ == '__main__':
+    main()
